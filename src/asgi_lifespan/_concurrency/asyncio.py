@@ -4,6 +4,7 @@ import types
 import typing
 
 from .base import BaseEvent, BaseQueue, ConcurrencyBackend
+from typing import Optional
 
 
 class AsyncioEvent(BaseEvent):
@@ -68,8 +69,8 @@ class Background:
     async def __aexit__(
         self,
         exc_type: typing.Optional[typing.Type[BaseException]] = None,
-        exc_value: BaseException = None,
-        traceback: types.TracebackType = None,
+        exc_value: Optional[BaseException] = None,
+        traceback: Optional[types.TracebackType] = None,
     ) -> None:
         assert self.task is not None
 

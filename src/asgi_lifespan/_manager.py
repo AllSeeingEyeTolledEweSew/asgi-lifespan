@@ -5,6 +5,7 @@ from ._compat import AsyncExitStack
 from ._concurrency import detect_concurrency_backend
 from ._exceptions import LifespanNotSupported
 from ._types import ASGIApp, Message, Scope
+from typing import Optional
 
 
 class LifespanManager:
@@ -94,9 +95,9 @@ class LifespanManager:
 
     async def __aexit__(
         self,
-        exc_type: typing.Type[BaseException] = None,
-        exc_value: BaseException = None,
-        traceback: TracebackType = None,
+        exc_type: Optional[typing.Type[BaseException]] = None,
+        exc_value: Optional[BaseException] = None,
+        traceback: Optional[TracebackType] = None,
     ) -> typing.Optional[bool]:
         if exc_type is None:
             self._exit_stack.push_async_callback(self.shutdown)
